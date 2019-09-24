@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 
 public class startpage {
-   public static void main(String[] args) {
+   public static void main(String[] args) throws Exception {
         System.out.println("Enter a number to access a program\n 1. Collections\n 2. HTTPConnection"); // Display the string.
          Scanner in = new Scanner(System.in);
           int a = in.nextInt();
@@ -20,8 +20,13 @@ public class startpage {
               collections.collection();
           break;
               case 2:
+                  try {
                   httpconnection.section();
-          break;
+                  }
+                  catch (Exception e) {
+                      
+                  }
+                  break;
         default:
     System.out.println("Enter a vaild selection and try again");
 
