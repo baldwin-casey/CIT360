@@ -13,47 +13,93 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 //This is strictly for when I am on break at work, where there is a proxy
 import java.net.Proxy;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author cbald
  */
 public class httpconnection {
-       public static void section() throws Exception{
+      public static void section() throws Exception{
            //These lines specify what url to go to
     System.out.println("HTTP!\n");
-    String url = "http://www.google.com";
+    //
+    String url = "http://www.hamqsl.com/solarxml.php";
+     String FILENAME = "test.xml";
     //try is just in case there is a problem
     try {
         //create the object and set the timeout
 
     URL obj = new URL(url);
     //open the connection!
+    
     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-    //whats the response code?
+    //con.setRequestProperty("http.agent", "");
+   // con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+    con.setRequestMethod("POST");
+    con.setRequestProperty("Accept", "application/xml");
+    con.setRequestProperty("Content-Type", "application/xml");
+//whats the response code?
   int status = con.getResponseCode();
-  if (status != con.HTTP_OK) {
+  if (status == con.HTTP_OK) {
       //This is because I have a proxy at work, and this is to mitigate that
     System.out.println("Server returned response code " + status);
 
-}
+        BufferedReader bw = new BufferedReader(new InputStreamReader(obj.openStream()));
+        BufferedWriter writer =  
+              new BufferedWriter(new FileWriter(FILENAME));
+         String line; 
+            while ((line = bw.readLine()) != null) { 
+            writer.write(line); 
+            } 
+        bw.close();
+        writer.close();
+        readxml();
+        System.out.println("Done!");
+  }       
+
   else {
-      
+      System.out.println("Im broken :-/ " + status);
   }
     }
     catch (MalformedURLException e) {
         System.out.println("This url is bad! " + e.getMessage());
     }
     catch (IOException e) {
-         System.out.println("Im broken :-/" + e.getMessage());
+         System.out.println("Im broken :-/ " + e.getMessage());
     }
     }
 
 
 public static void readxml() {
-File xml = new File("solarxml.xml");
-DocumentBuilderFactory builderfactory = DocumentBuilderFactory.newInstance();
-//DocumentBuilder documentbuilder = builderfactory.newDocumentBuilder();
-//Document document = documentbuilder.parse(xml);
+File xml = new File("test.xml");
+try{
+DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+DocumentBuilder builder = factory.newDocumentBuilder();
+Document document = builder.parse(xml);
+System.out.println("As of" + document.getElementsByTagName("updated").item(0).getTextContent());
+System.out.println("80M & 40M During the Day is " + document.getElementsByTagName("band").item(0).getTextContent());
+System.out.println("30M & 20M During the Day is " + document.getElementsByTagName("band").item(1).getTextContent());
+System.out.println("17M & 15M During the Day is " + document.getElementsByTagName("band").item(2).getTextContent());
+System.out.println("12M & 10M During the Day is " + document.getElementsByTagName("band").item(3).getTextContent());
+System.out.println("--------------------------------------------------");
+System.out.println("80M & 40M During the Night is " + document.getElementsByTagName("band").item(4).getTextContent());
+System.out.println("30M & 20M During the Night is " + document.getElementsByTagName("band").item(5).getTextContent());
+System.out.println("17M & 15M During the Night is " + document.getElementsByTagName("band").item(6).getTextContent());
+System.out.println("12M & 10M During the Night is " + document.getElementsByTagName("band").item(7).getTextContent());
+System.out.println("--------------------------------------------------");
+System.out.println("2M propogation is " + document.getElementsByTagName("phenomenon").item(2).getTextContent());
+System.out.println("Credit to Paul, N0NBH");
+}
 
+catch (Exception e){
+    //Things
+    System.out.println("Parse is broken :-/" + e.getMessage());
+}
+}
+
+public static void testxml() {
+    //The craeter of this amazing forecast tool has asked that this only update once per hour at most. This will test if the loaded file is newer than 24 hours
+    
 }
 }
