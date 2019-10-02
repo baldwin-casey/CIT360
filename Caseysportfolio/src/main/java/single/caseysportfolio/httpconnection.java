@@ -13,8 +13,7 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 //This is strictly for when I am on break at work, where there is a proxy
 import java.net.Proxy;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
 /**
  *
  * @author cbald
@@ -24,8 +23,24 @@ public class httpconnection {
            //These lines specify what url to go to
     System.out.println("HTTP!\n");
     //
+    System.out.println("Are you using a proxy?(Y/N)\n");
+    Scanner in = new Scanner(System.in);
+    String a = in.nextLine();
+    if (a == "Y" || a == "y") {
+        //These are my work proxy settings, if you try to use them, your stuff will break. So just don't.
+    System.setProperty("http.proxyHost", "proxy-chain.intel.com");
+    System.setProperty("http.proxyPort", "911");
+        System.setProperty("https.proxyHost", "proxy-chain.intel.com");
+    System.setProperty("https.proxyPort", "912");
+    }
+    if (a == "N" || a == "n") {
+        //This is the standard option for the program to continue
+    }
+    else {
+            System.out.println("Please try again\n");
+    }
     String url = "http://www.hamqsl.com/solarxml.php";
-     String FILENAME = "test.xml";
+     String filename = "test.xml";
     //try is just in case there is a problem
     try {
         //create the object and set the timeout
@@ -45,14 +60,14 @@ public class httpconnection {
       //This is because I have a proxy at work, and this is to mitigate that
     System.out.println("Server returned response code " + status);
 
-        BufferedReader bw = new BufferedReader(new InputStreamReader(obj.openStream()));
+        BufferedReader br = new BufferedReader(new InputStreamReader(obj.openStream()));
         BufferedWriter writer =  
-              new BufferedWriter(new FileWriter(FILENAME));
+              new BufferedWriter(new FileWriter(filename));
          String line; 
-            while ((line = bw.readLine()) != null) { 
+            while ((line = br.readLine()) != null) { 
             writer.write(line); 
             } 
-        bw.close();
+        br.close();
         writer.close();
         readxml();
         System.out.println("Done!");
