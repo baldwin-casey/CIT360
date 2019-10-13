@@ -8,9 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
-import java.util.Queue;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -20,14 +17,12 @@ import java.util.regex.Pattern;
  * @author cbald
  This program is fueled by mountain dew and pizza rolls
  */
-public class Main {
+public class collections {
    public static int count = 0;
    public static int handcount = 0;
    public static List deck = new ArrayList<>();
    public static List hand = new ArrayList<>();
-   //REMOVE ME AFTER TESTING
-   //LINE SHOULD BE public static void collection() {
-   public static void main(String[] args) {
+    public static void collection() {
     System.out.println("COLLECTIONS!\n");
     builddeck();
     drawcards();
@@ -37,7 +32,7 @@ public class Main {
    
     public static void builddeck() {
     //Need to build the deck and shuffle the cards
-    deck.add(count, "2 Hearts");
+    deck.add(count, "2 of 2Hearts");
     deck.add(count++, "3 of Hearts");
     deck.add(count++, "4 of Hearts");
     deck.add(count++, "5 of Hearts");
@@ -116,18 +111,20 @@ public static void drawcards() {
 }
 
 public static void displayhand() {
+    int firstvalue = 0;
+    int secondvalue = 0;
 	//This displays the current score and asks the player to input a choice. 
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher(hand.get(0).toString());
         if (m.find()) {
-        int firstvalue = Integer.parseInt(m.group(0));
+        firstvalue = Integer.parseInt(m.group(0));
         }
 
         	//This displays the current score and asks the player to input a choice. 
         Pattern p2 = Pattern.compile("\\d+");
         Matcher m2 = p2.matcher(hand.get(1).toString());
         if (m2.find( )) {
-        int secondvalue = Integer.parseInt(m2.group(0));
+        secondvalue = Integer.parseInt(m2.group(0));
            //int firstvalue = 5;
            //int secondvalue = 3;
         } 
@@ -166,7 +163,7 @@ public static void drawextracard(){
 }
 
 public static void gameresult() {
-//Here is some code
+int quack = 0;
 }
 }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<solar>
+	<solardata>
+		<source url="http://www.hamqsl.com/solar.html">N0NBH</source>
+		<updated> 27 Sep 2019 1104 GMT</updated>
+		<solarflux>66</solarflux>
+		<aindex> 8</aindex>
+		<kindex> 1</kindex>
+		<kindexnt>No Report</kindexnt>
+		<xray> A6.4   </xray>
+		<sunspots>0</sunspots>
+		<heliumline> 90.3</heliumline>
+		<protonflux>1.91e-01</protonflux>
+		<electonflux>2.07e+03</electonflux>
+		<aurora></aurora>
+		<normalization></normalization>
+		<latdegree>No Report</latdegree>
+		<solarwind>405.4</solarwind>
+		<magneticfield> -1.2</magneticfield>
+		<calculatedconditions>
+			<band name="80m-40m" time="day">Fair</band>
+			<band name="30m-20m" time="day">Poor</band>
+			<band name="17m-15m" time="day">Poor</band>
+			<band name="12m-10m" time="day">Poor</band>
+			<band name="80m-40m" time="night">Good</band>
+			<band name="30m-20m" time="night">Poor</band>
+			<band name="17m-15m" time="night">Poor</band>
+			<band name="12m-10m" time="night">Poor</band>
+		</calculatedconditions>
+		<calculatedvhfconditions>
+			<phenomenon name="vhf-aurora" location="northern_hemi">Band Closed</phenomenon>
+			<phenomenon name="E-Skip" location="europe">Band Closed</phenomenon>
+			<phenomenon name="E-Skip" location="north_america">Band Closed</phenomenon>
+			<phenomenon name="E-Skip" location="europe_6m">Band Closed</phenomenon>
+			<phenomenon name="E-Skip" location="europe_4m">Band Closed</phenomenon>
+		</calculatedvhfconditions>
+		<geomagfield>VR QUIET</geomagfield>
+		<signalnoise>S0-S1</signalnoise>
+		<fof2> 4.8</fof2>
+		<muffactor> 3.07</muffactor>
+		<muf>NoRpt</muf>
+	</solardata>
+</solar>

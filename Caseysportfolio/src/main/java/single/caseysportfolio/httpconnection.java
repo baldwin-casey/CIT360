@@ -23,9 +23,9 @@ public class httpconnection {
            //These lines specify what url to go to
     System.out.println("HTTP!\n");
     //
-    System.out.println("Are you using a proxy?(Y/N)\n");
+   /* System.out.println("Are you using a proxy?(Y/N)\n");
     Scanner in = new Scanner(System.in);
-    String a = in.nextLine();
+    String a = in.next();
     if (a == "Y" || a == "y") {
         //These are my work proxy settings, if you try to use them, your stuff will break. So just don't.
     System.setProperty("http.proxyHost", "proxy-chain.intel.com");
@@ -39,6 +39,7 @@ public class httpconnection {
     else {
             System.out.println("Please try again\n");
     }
+*/
     String url = "http://www.hamqsl.com/solarxml.php";
      String filename = "test.xml";
     //try is just in case there is a problem
@@ -51,9 +52,12 @@ public class httpconnection {
     HttpURLConnection con = (HttpURLConnection) obj.openConnection();
     //con.setRequestProperty("http.agent", "");
    // con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-    con.setRequestMethod("POST");
+   //String cookie = con.getHeaderField( "Set-Cookie").split(";")[0];
+   con.setRequestMethod("POST");
     con.setRequestProperty("Accept", "application/xml");
     con.setRequestProperty("Content-Type", "application/xml");
+    //con.setRequestProperty("Cookie", cookie );
+    con.connect();
 //whats the response code?
   int status = con.getResponseCode();
   if (status == con.HTTP_OK) {
